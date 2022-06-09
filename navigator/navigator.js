@@ -7,6 +7,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import LoginScreen from "../screen/loginScreen";
+import HomeScreen from "../screen/homeScreen";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { View, Text, TouchableOpacity } from "react-native";
@@ -22,14 +23,15 @@ function AuthNavigator() {
   const stack = createStackNavigator();
   return (
     <stack.Navigator
-      initialRouteName="login"
+      initialRouteName="home"
       screenOptions={{
         headerShown: false,
-        // gestureEnabled: true,
-        // gestureDirection: "horizontal",
+        gestureEnabled: true,
+        gestureDirection: "horizontal",
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
     >
+      <stack.Screen name="home" component={HomeScreen} />
       <stack.Screen name="login" component={LoginScreen} />
     </stack.Navigator>
   );
