@@ -1,4 +1,4 @@
 import { Text } from "react-native";
-export default function searchScreen() {
+export default function SearchScreen() {
   return <Text>Hey</Text>;
 }

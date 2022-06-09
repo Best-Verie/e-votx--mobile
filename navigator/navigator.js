@@ -11,7 +11,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import LoginScreen from "../screen/loginScreen";
 import HomeScreen from "../screen/homeScreen";
 import SignUpScreen from "../screen/signUpScreen";
-import searchScreen from "../screen/searchScreen";
+import SearchScreen from "../screen/searchScreen";
 
 export default function Navigator() {
   if (useContext(AuthContext).isLoggedIn) {
@@ -57,13 +57,13 @@ function AppNavigator() {
         tabBarHideKeyboard: true,
         tabBarInactiveTintColor: "black",
         tabBarStyle: {
-          backgroundColor: "white",
-          height: 80,
+          backgroundColor: "#4361EE",
+          height: 50,
           paddingBottom: 10,
           padding: 30,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-          marginHorizontal: 5,
+          // borderTopLeftRadius: 30,
+          // borderTopRightRadius: 30,
+          // marginHorizontal: 5,
           position: "absolute",
           borderColor: "white",
           elevation: 10,
@@ -97,7 +97,7 @@ function AppNavigator() {
             <AntDesign name="home" size={24} color={color} />
           ),
         }}
-        component={searchScreen}
+        component={SearchScreen}
       />
     </Tabs.Navigator>
   );
