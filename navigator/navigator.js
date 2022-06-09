@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import loginScreen from "../screen/loginScreen";
+import LoginScreen from "../screen/loginScreen";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { View, Text, TouchableOpacity } from "react-native";
@@ -30,7 +30,7 @@ function AuthNavigator() {
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
     >
-      <stack.Screen name="login" component={loginScreen} />
+      <stack.Screen name="login" component={LoginScreen} />
     </stack.Navigator>
   );
 }
@@ -86,7 +86,7 @@ function AppNavigator() {
             <AntDesign name="home" size={24} color={color} />
           ),
         }}
-        component={loginScreen}
+        component={LoginScreen}
       />
     </Tabs.Navigator>
   );
