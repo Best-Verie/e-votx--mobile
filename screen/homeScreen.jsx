@@ -25,7 +25,7 @@ export default function HomeScreen(props) {
         <View style={styles.getStarted}>
           <SubmitButton
             title="Get started"
-            onPress={() => navigation.navigate("signup")}
+            onPress={() => navigation.navigate("search")}
           />
         </View>
       </Pressable>
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "gray",
     textAlign: "center",
-    lineHeight: 20,
-    fontFamily: "urbanist-light",
+    // lineHeight: 20,
+    fontFamily: "urbanist-regular",
   },
   getStarted: {
     marginTop: 40,

@@ -11,9 +11,10 @@ import { View, Text, TouchableOpacity } from "react-native";
 import LoginScreen from "../screen/loginScreen";
 import HomeScreen from "../screen/homeScreen";
 import SignUpScreen from "../screen/signUpScreen";
+import searchScreen from "../screen/searchScreen";
 
 export default function Navigator() {
-  if (useContext(AuthContext).isLogggedIn) {
+  if (useContext(AuthContext).isLoggedIn) {
     return <AppNavigator />;
   } else {
     return <AuthNavigator />;
@@ -33,7 +34,13 @@ function AuthNavigator() {
       }}
     >
       <stack.Screen name="home" component={HomeScreen} />
-      <stack.Screen name="login" component={LoginScreen} />
+      <stack.Screen
+        name="login"
+        screenOptions={{
+          headerShown: false,
+        }}
+        component={LoginScreen}
+      />
       <stack.Screen name="signup" component={SignUpScreen} />
     </stack.Navigator>
   );
@@ -90,7 +97,7 @@ function AppNavigator() {
             <AntDesign name="home" size={24} color={color} />
           ),
         }}
-        component={LoginScreen}
+        component={searchScreen}
       />
     </Tabs.Navigator>
   );
