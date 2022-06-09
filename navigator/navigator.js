@@ -5,12 +5,13 @@ import {
   CardStyleInterpolators,
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import LoginScreen from "../screen/loginScreen";
 import HomeScreen from "../screen/homeScreen";
-import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+import SignUpScreen from "../screen/signUpScreen";
 
-import { View, Text, TouchableOpacity } from "react-native";
 export default function Navigator() {
   if (useContext(AuthContext).isLogggedIn) {
     return <AppNavigator />;
@@ -33,6 +34,7 @@ function AuthNavigator() {
     >
       <stack.Screen name="home" component={HomeScreen} />
       <stack.Screen name="login" component={LoginScreen} />
+      <stack.Screen name="signup" component={SignUpScreen} />
     </stack.Navigator>
   );
 }

@@ -1,7 +1,9 @@
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import SubmitButton from "../components/SubmitButton";
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
       <Text style={styles.slogan}>E-votx</Text>
@@ -23,10 +25,16 @@ export default function HomeScreen() {
         <View style={styles.getStarted}>
           <SubmitButton
             title="Get started"
-            onPress={() => console.log("hey")}
+            onPress={() => navigation.navigate("signup")}
           />
         </View>
       </Pressable>
+
+      <TouchableWithoutFeedback onPress={() => navigation.navigate("login")}>
+        <View style={styles.bottomContent}>
+          <Text style={styles.bottomText}>Login to E-votx</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
@@ -42,7 +50,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#4361EE",
-    marginTop: 130,
+    marginTop: 30,
+    marginBottom: 80,
     textAlign: "center",
   },
   imgContainer: {
@@ -72,5 +81,16 @@ const styles = StyleSheet.create({
   },
   getStarted: {
     marginTop: 40,
+  },
+  bottomContent: {
+    marginTop: 20,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  bottomText: {
+    marginTop: 20,
+    fontSize: 14,
+    color: "#4361EE",
+    textDecorationStyle: "solid",
   },
 });
