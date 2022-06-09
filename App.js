@@ -6,6 +6,7 @@ import { useFonts } from "expo-font";
 import { Text } from "react-native";
 
 export default function App() {
+  console.warn = () => {};
   let [fontsLoaded] = useFonts({
     "urbanist-light": require("./assets/fonts/Urbanist/static/Urbanist-Light.ttf"),
     "urbanist-bold": require("./assets/fonts/Urbanist/static/Urbanist-Bold.ttf"),

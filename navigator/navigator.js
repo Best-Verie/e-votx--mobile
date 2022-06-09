@@ -13,6 +13,7 @@ import LoginScreen from "../screen/loginScreen";
 import HomeScreen from "../screen/homeScreen";
 import SignUpScreen from "../screen/signUpScreen";
 import SearchScreen from "../screen/searchScreen";
+import HomeTabScreen from "../screen/tabs/homeTabScreen";
 
 export default function Navigator() {
   if (useContext(AuthContext).isLoggedIn) {
@@ -96,7 +97,7 @@ function AppNavigator() {
             <AntDesign name="home" size={26} color={color} />
           ),
         }}
-        component={HomeScreen}
+        component={HomeTabScreen}
       />
 
       <Tabs.Screen
