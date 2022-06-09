@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 80,
     textAlign: "center",
+    fontFamily: "urbanist-bold",
   },
   imgContainer: {
     marginTop: 10,
@@ -70,14 +71,16 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     lineHeight: 30,
     textAlign: "center",
+    fontFamily: "urbanist-bold",
   },
   gText: {
     marginTop: 20,
     fontSize: 16,
-    fontWeight: "400",
+    fontWeight: "600",
     color: "gray",
     textAlign: "center",
     lineHeight: 20,
+    fontFamily: "urbanist-light",
   },
   getStarted: {
     marginTop: 40,
@@ -92,5 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#4361EE",
     textDecorationStyle: "solid",
+    fontWeight: "400",
+    fontFamily: "urbanist-bold",
   },
 });
