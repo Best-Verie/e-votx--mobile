@@ -25,7 +25,7 @@ export default function HomeScreen(props) {
         <View style={styles.getStarted}>
           <SubmitButton
             title="Get started"
-            onPress={() => navigation.navigate("search")}
+            onPress={() => navigation.navigate("signup")}
           />
         </View>
       </Pressable>

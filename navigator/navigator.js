@@ -7,6 +7,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import LoginScreen from "../screen/loginScreen";
 import HomeScreen from "../screen/homeScreen";
@@ -73,15 +74,13 @@ function AppNavigator() {
             <View {...props}>
               <View
                 style={{
-                  minwidth: 50,
-                  minHeight: 50,
+                  minWidth: 40,
+                  minHeight: 40,
                   borderRadius: 10,
-                  backgroundColor: props.accessibilityState.selected
-                    ? "#F6E3DB"
-                    : "white",
+                  backgroundColor: "transparent",
                 }}
               >
-                {/* <TouchableOpacity>{...props}</TouchableOpacity> */}
+                <TouchableOpacity {...props} />
               </View>
             </View>
           );
@@ -91,13 +90,46 @@ function AppNavigator() {
       }}
     >
       <Tabs.Screen
-        name="search"
+        name="home"
         options={{
           tabBarIcon: ({ color }) => (
-            <AntDesign name="home" size={24} color={color} />
+            <AntDesign name="home" size={26} color={color} />
+          ),
+        }}
+        component={HomeScreen}
+      />
+
+      <Tabs.Screen
+        name="add"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="add-circle-outline" size={24} color={color} />
           ),
         }}
         component={SearchScreen}
+      />
+
+      <Tabs.Screen
+        name="analytics"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              name="google-analytics"
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+        component={LoginScreen}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="adduser" size={24} color={color} />
+          ),
+        }}
+        component={LoginScreen}
       />
     </Tabs.Navigator>
   );
