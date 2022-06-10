@@ -14,6 +14,8 @@ import HomeScreen from "../screen/homeScreen";
 import SignUpScreen from "../screen/signUpScreen";
 import SearchScreen from "../screen/searchScreen";
 import HomeTabScreen from "../screen/tabs/homeTabScreen";
+import Election from "../screen/tabs/electionScreen";
+import CandidateDetails from "../screen/tabs/candidateDetails";
 
 export default function Navigator() {
   if (useContext(AuthContext).isLoggedIn) {
@@ -44,6 +46,7 @@ function AuthNavigator() {
         component={LoginScreen}
       />
       <stack.Screen name="signup" component={SignUpScreen} />
+      {/* <stack.Screen name="details" component={CandidateDetails} /> */}
     </stack.Navigator>
   );
 }
@@ -63,9 +66,6 @@ function AppNavigator() {
           height: 50,
           paddingBottom: 10,
           padding: 30,
-          // borderTopLeftRadius: 30,
-          // borderTopRightRadius: 30,
-          // marginHorizontal: 5,
           position: "absolute",
           borderColor: "white",
           elevation: 10,
@@ -104,10 +104,10 @@ function AppNavigator() {
         name="add"
         options={{
           tabBarIcon: ({ color }) => (
-            <Ionicons name="add-circle-outline" size={24} color={color} />
+            <Ionicons name="add-circle-outline" size={26} color={color} />
           ),
         }}
-        component={SearchScreen}
+        component={Election}
       />
 
       <Tabs.Screen
@@ -116,12 +116,12 @@ function AppNavigator() {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="google-analytics"
-              size={24}
+              size={26}
               color={color}
             />
           ),
         }}
-        component={LoginScreen}
+        component={CandidateDetails}
       />
       <Tabs.Screen
         name="profile"
@@ -130,7 +130,7 @@ function AppNavigator() {
             <AntDesign name="adduser" size={24} color={color} />
           ),
         }}
-        component={LoginScreen}
+        component={SearchScreen}
       />
     </Tabs.Navigator>
   );

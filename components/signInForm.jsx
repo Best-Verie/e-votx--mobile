@@ -9,20 +9,11 @@ export default function SignInForm(props) {
     <View style={styles.container}>
       <TextInput style={styles.inputStyle} placeholder="Email" />
       <TextInput style={styles.inputStyle} placeholder="Password" />
-      {/* <View View style={styles.submitButton}>
-        <Pressable
-          style={styles.button}
-          onPress={() => navigation.navigate("search")}
-        >
-          <Text style={styles.caption}>Login</Text>
-        </Pressable>
-      </View> */}
-
       <Pressable>
         <View style={styles.submitButton}>
           <SubmitButton
-            title="Get started"
-            onPress={() => navigation.navigate("signup")}
+            title="Login"
+            // onPress={() => navigation.navigate("signup")}
           />
         </View>
       </Pressable>
@@ -31,13 +22,6 @@ export default function SignInForm(props) {
 }
 
 const styles = StyleSheet.create({
-  //   container: {
-  //     marginTop: 200,
-  //     flex: 1,
-  //     backgroundColor: "#FFFFFF",
-  //     alignItems: "center",
-  //     justifyContent: "center",
-  //   },
   inputStyle: {
     flexDirection: "row",
     alignItems: "flex-start",
