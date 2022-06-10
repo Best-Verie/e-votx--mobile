@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
   },
   candidates: {
     flexDirection: "row",
-    // flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "space-between",
     marginLeft: 40,
     marginRight: 60,
+    marginTop: 30,
   },
 
   cTitle: {

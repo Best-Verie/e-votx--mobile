@@ -84,6 +84,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     // marginLeft: 20,
     alignItems: "center",
+    marginLeft: 20,
+  },
+  profileImg: {
+    width: 80,
+    height: 80,
   },
   personalDescr: {
     marginLeft: 20,
@@ -91,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   descrText: {
-    marginTop: 20,
+    marginTop: 30,
     fontSize: 16,
     fontFamily: "urbanist-semi-bold",
     textAlign: "center",

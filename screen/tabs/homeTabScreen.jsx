@@ -12,7 +12,7 @@ export default function HomeTabScreen() {
       </View>
       <Text style={styles.currentText}>Current Elections</Text>
       {/* <View style={styles.slider}> */}
-      <CardSilder>
+      <CardSilder style={styles.slider}>
         <View
           style={{
             height: 170,
@@ -78,13 +78,7 @@ export default function HomeTabScreen() {
           </Text>
         </View>
       </CardSilder>
-      {/* </View> */}
-      {/* <Text>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
-        nostrum excepturi illum corporis blanditiis libero dolorem neque a qui
-        dignissimos. Voluptatibus adipisci consectetur tempore explicabo earum
-        fugit cum. Saepe, maiores?
-      </Text> */}
+
       <View style={styles.latest}>
         <Text style={styles.latestText}>Latest elections</Text>
       </View>
@@ -103,10 +97,11 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   slider: {
-    marginTop: 20,
-    backgroundColor: "red",
+    marginTop: 40,
+    // backgroundColor: "red",
     fontFamily: "urbanist-semi-bold",
-    marginBottom: 20,
+    // marginBottom: 20,
+    height: "40%",
   },
   latest: {
     alignItems: "center",

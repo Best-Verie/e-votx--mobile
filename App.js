@@ -10,7 +10,7 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     "urbanist-light": require("./assets/fonts/Urbanist/static/Urbanist-Light.ttf"),
     "urbanist-bold": require("./assets/fonts/Urbanist/static/Urbanist-Bold.ttf"),
-    "urbanist-semi-bold": require("./assets/fonts/Urbanist/static/Urbanist-SemiBold.ttf"),
+    "urbanist-semi-bold": require("./assets/fonts/Urbanist/static/Urbanist-Medium.ttf"),
     "urbanist-regular": require("./assets/fonts/Urbanist/static/Urbanist-Regular.ttf"),
   });
 
