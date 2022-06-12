@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
 
 import BackButton from "../../components/BackButton";
+import CandidateDetails from "./candidateDetails";
 export default function Election(props) {
   const navigateBack = () => {
     props.navigation.goBack();
@@ -34,11 +35,16 @@ export default function Election(props) {
         <Text style={styles.cTitle}>Candidates(3)</Text>
         <View style={styles.candidates}>
           <View style={styles.candidatesList}>
+            {/* <View */}
+            {/* style={styles.candidate} */}
+            {/* // onPress={() => props.navigation.navigate("details")} */}
+            {/* > */}
             <Image
               source={require("./../../assets/cand-profile.png")}
               style={styles.candidateImage}
             />
             <Text style={styles.cName}>Iradukunda Best Verie</Text>
+            {/* </View> */}
           </View>
           <View style={styles.vote}>
             <Pressable onPress={() => props.navigation.navigate("analytics")}>

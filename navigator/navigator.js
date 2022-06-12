@@ -6,17 +6,17 @@ import {
 } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import LoginScreen from "../screen/loginScreen";
 import HomeScreen from "../screen/homeScreen";
 import SignUpScreen from "../screen/signUpScreen";
-import SearchScreen from "../screen/searchScreen";
 import HomeTabScreen from "../screen/tabs/homeTabScreen";
 import Election from "../screen/tabs/electionScreen";
 import CandidateDetails from "../screen/tabs/candidateDetails";
 import ElectionResults from "../screen/tabs/electionResults";
+import AdminCreateElection from "../screen/admin/CreateElection";
 
 export default function Navigator() {
   if (useContext(AuthContext).isLoggedIn) {
@@ -57,7 +57,7 @@ const Tabs = createBottomTabNavigator();
 function AppNavigator() {
   return (
     <Tabs.Navigator
-      initialRouteName="search"
+      initialRouteName="home"
       screenOptions={{
         headerShown: false,
         tabBarHideKeyboard: true,
@@ -131,8 +131,25 @@ function AppNavigator() {
             <AntDesign name="adduser" size={24} color={color} />
           ),
         }}
-        component={SearchScreen}
+        component={AdminCreateElection}
       />
     </Tabs.Navigator>
+  );
+}
+
+function otherNavigators() {
+  const stack = createStackNavigator();
+  return (
+    <stack.Navigator
+      initialRouteName="details"
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+        gestureDirection: "horizontal",
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}
+    >
+      <stack.Screen name="details" component={CandidateDetails} />
+    </stack.Navigator>
   );
 }

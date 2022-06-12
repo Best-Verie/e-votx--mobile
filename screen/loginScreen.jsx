@@ -24,17 +24,6 @@ export default function LoginScreen(props) {
       <View style={styles.loginForm}>
         <SignInForm />
       </View>
-
-      {/* <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("signup");
-        }}
-      >
-        <View style={styles.bottomContent}>
-          <Text style={styles.bottomText}>Don't have an account?</Text>
-          <Text style={styles.bottomTextTwo}>sign up</Text>
-        </View>
-      </TouchableOpacity> */}
     </View>
   );
 }
