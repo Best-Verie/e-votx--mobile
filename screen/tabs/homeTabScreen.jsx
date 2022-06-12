@@ -1,7 +1,7 @@
-import { View, StyleSheet, Text, TextInput } from "react-native";
+import { View, StyleSheet, Text, TextInput, Pressable } from "react-native";
 import CardSilder from "react-native-cards-slider";
 
-export default function HomeTabScreen() {
+export default function HomeTabScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.searchView}>
@@ -11,28 +11,30 @@ export default function HomeTabScreen() {
         />
       </View>
       <Text style={styles.currentText}>Current Elections</Text>
-      {/* <View style={styles.slider}> */}
       <CardSilder style={styles.slider}>
-        <View
-          style={{
-            height: 170,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "skyblue",
-            fontFamily: "urbanist-semi-bold",
-          }}
-        >
-          <Text
+        <Pressable onPress={() => props.navigation.navigate("add")}>
+          <View
             style={{
-              color: "white",
-              fontSize: 24,
-              fontWeight: "bold",
+              height: 170,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "skyblue",
               fontFamily: "urbanist-semi-bold",
             }}
           >
-            Presidential elections
-          </Text>
-        </View>
+            <Text
+              style={{
+                color: "white",
+                fontSize: 24,
+                fontWeight: "bold",
+                fontFamily: "urbanist-semi-bold",
+              }}
+            >
+              Presidential elections
+            </Text>
+          </View>
+        </Pressable>
+
         <View
           style={{
             height: 170,
@@ -98,15 +100,12 @@ const styles = StyleSheet.create({
   },
   slider: {
     marginTop: 40,
-    // backgroundColor: "red",
     fontFamily: "urbanist-semi-bold",
-    // marginBottom: 20,
     height: "40%",
   },
   latest: {
     alignItems: "center",
     justifyContent: "flex-end",
-    // marginTop: 150,
   },
   searchView: {
     marginTop: 28,

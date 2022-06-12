@@ -16,6 +16,7 @@ import SearchScreen from "../screen/searchScreen";
 import HomeTabScreen from "../screen/tabs/homeTabScreen";
 import Election from "../screen/tabs/electionScreen";
 import CandidateDetails from "../screen/tabs/candidateDetails";
+import ElectionResults from "../screen/tabs/electionResults";
 
 export default function Navigator() {
   if (useContext(AuthContext).isLoggedIn) {
@@ -121,7 +122,7 @@ function AppNavigator() {
             />
           ),
         }}
-        component={CandidateDetails}
+        component={ElectionResults}
       />
       <Tabs.Screen
         name="profile"
