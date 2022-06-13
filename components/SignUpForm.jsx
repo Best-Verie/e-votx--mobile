@@ -5,8 +5,8 @@ export default function SignUpForm(props) {
     <View style={styles.container}>
       <TextInput style={styles.inputStyle} placeholder="First Name" />
       <TextInput style={styles.inputStyle} placeholder="Last Name" />
-      <TextInput style={styles.inputStyle} placeholder="Email" />
-      <TextInput style={styles.inputStyle} placeholder="Password" />
+      <TextInput style={styles.inputStyle} placeholder="Email" autoCapitalize="none" />
+      <TextInput style={styles.inputStyle} placeholder="Password" secureTextEntry={true} />
       <View style={styles.submitButton}>
         <Pressable
           style={styles.button}

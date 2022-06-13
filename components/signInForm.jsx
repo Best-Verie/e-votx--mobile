@@ -43,12 +43,12 @@ export default function SignInForm(props) {
       }
 
       const data = await response.json();
-      Alert.alert("Success", "You have successfully signed in");
 
-      console.log("data:", data);
+      console.log({ data })
 
       if (data.access_token) {
         // console.log("data.access_token:", data.access_token);
+        Alert.alert("Success", "You have successfully signed in");
         await SecureStore.setItemAsync("token", data.access_token);
         const token = await SecureStore.getItemAsync("access_token");
         console.log("token:", token);
@@ -62,6 +62,7 @@ export default function SignInForm(props) {
         style={styles.inputStyle}
         placeholder="Email"
         value={values.email}
+        autoCapitalize="none"
         onChangeText={handleChange("email")}
       />
       <TextInput

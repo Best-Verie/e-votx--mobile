@@ -1,27 +1,29 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import SignUpForm from "../components/SignUpForm";
 import BackButton from "../components/BackButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function SignUpScreen() {
   return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <View style={styles.backbtnView}>
-          <BackButton />
+    <SafeAreaView>
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
+          <View style={styles.backbtnView}>
+            <BackButton />
+          </View>
+          <View style={styles.top}>
+            <Text style={styles.topText}>Sign up</Text>
+          </View>
         </View>
-        <View style={styles.top}>
-          <Text style={styles.topText}>Sign up</Text>
+
+        <View style={styles.midContainer}>
+          <Text style={styles.midText}>Create your free E-votx account</Text>
         </View>
-      </View>
 
-      <View style={styles.midContainer}>
-        <Text style={styles.midText}>Create your free E-votx account</Text>
-      </View>
+        <View style={styles.loginForm}>
+          <SignUpForm />
+        </View>
 
-      <View style={styles.loginForm}>
-        <SignUpForm />
-      </View>
-
-      {/* <TouchableOpacity
+        {/* <TouchableOpacity
         onPress={() => {
           navigation.navigate("signup");
         }}
@@ -31,7 +33,8 @@ export default function SignUpScreen() {
           <Text style={styles.bottomTextTwo}>sign up</Text>
         </View>
       </TouchableOpacity> */}
-    </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
