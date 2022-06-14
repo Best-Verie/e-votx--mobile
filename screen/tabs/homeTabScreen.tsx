@@ -18,8 +18,8 @@ export default function HomeTabScreen(props) {
               height: 170,
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "skyblue",
               fontFamily: "urbanist-semi-bold",
+              backgroundColor: "skyblue",
             }}
           >
             <Text

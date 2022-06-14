@@ -1,7 +1,10 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 
-export default function SubmitButton(props) {
+export default function SubmitButton(props: {
+  title: string,
+  onPress: () => void,
+}) {
   const { title, onPress } = props;
 
   return (

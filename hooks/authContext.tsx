@@ -1,15 +1,26 @@
 import { View, Text } from "react-native";
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { getToken } from "../utils/token";
-const AuthContext = createContext({
-  authedUser: {},
-  setAuthUser: (user) => null,
-  isLoggedIn: () => null,
-  setIsLoggedIn: () => null,
+
+type User = {
+  id: string;
+  name: string;
+}
+
+const AuthContext = createContext<{
+  authedUser: User | undefined;
+  setAuthUser: (user: User | undefined) => void;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
+}>({
+  authedUser: undefined,
+  setAuthUser: (user: User | undefined) => null,
+  isLoggedIn: false,
+  setIsLoggedIn: (val: boolean) => null,
 });
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User>();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

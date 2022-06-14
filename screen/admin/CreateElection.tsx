@@ -1,10 +1,19 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleSheet, View, Text } from "react-native";
 import BackButton from "../../components/BackButton";
-import CreateElection from "./../../components/createElectionForm";
-export default function AdminCreateElection(props) {
+import CreateElection from "../../components/createElectionForm";
+import { RootStackParamList } from "../../navigator/navigator";
+
+
+
+type Props = NativeStackScreenProps<RootStackParamList, "Add">
+
+export default function AdminCreateElection({ navigation }: Props) {
+
   const navigateBack = () => {
-    props.navigation.goBack();
+    navigation.goBack();
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -15,7 +24,7 @@ export default function AdminCreateElection(props) {
           <Text style={styles.topText}>Admin create election</Text>
         </View>
       </View>
-      <View style={styles.form}>
+      <View>
         <CreateElection />
       </View>
     </View>

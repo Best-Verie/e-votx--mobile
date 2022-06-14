@@ -1,8 +1,11 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View, StyleSheet, Text, Image } from "react-native";
 import BackButton from "../../components/BackButton";
+import { RootStackParamList } from "../../navigator/navigator";
 
-export default function CandidateDetails(props) {
-  const { navigation } = props;
+type Props = NativeStackScreenProps<RootStackParamList, "Signup">
+
+export default function CandidateDetails({ navigation }: Props) {
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -16,7 +19,7 @@ export default function CandidateDetails(props) {
           <Text style={styles.topText}>Best verie's details elections</Text>
         </View>
       </View>
-      <View style={styles.midContainer}>
+      <View>
         <View
           style={{
             width: "100%",

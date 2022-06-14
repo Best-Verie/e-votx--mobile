@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import SignInForm from "../components/signInForm";
+import SignInForm from "../components/SignInForm";
 import BackButton from "../components/BackButton";
 export default function LoginScreen(props) {
   const { navigation } = props;

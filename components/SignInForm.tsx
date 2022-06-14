@@ -12,7 +12,7 @@ import { AuthContext } from "../hooks/authContext";
 import { useFormik } from "formik";
 import * as SecureStore from "expo-secure-store";
 
-export default function SignInForm(props) {
+export default function SignInForm() {
   const setIsLoggedIn = react.useContext(AuthContext).setIsLoggedIn;
 
   const { handleSubmit, handleChange, values } = useFormik({
@@ -36,7 +36,6 @@ export default function SignInForm(props) {
           body: JSON.stringify(values),
         }
       );
-      console.log("response:", response);
 
       if (!response.ok) {
         Alert.alert("Error", "Invalid credentials");
@@ -57,7 +56,7 @@ export default function SignInForm(props) {
     },
   });
   return (
-    <View style={styles.container}>
+    <View>
       <TextInput
         style={styles.inputStyle}
         placeholder="Email"

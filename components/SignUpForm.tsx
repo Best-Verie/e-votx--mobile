@@ -1,8 +1,14 @@
 import { Text, StyleSheet, View, TextInput, Pressable } from "react-native";
-export default function SignUpForm(props) {
-  const { navigation } = props;
+import { RootStackParamList } from "../navigator/navigator";
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+
+
+type Props = NativeStackScreenProps<RootStackParamList, "Signup">
+
+
+export default function SignUpForm({ navigation }: Props) {
   return (
-    <View style={styles.container}>
+    <View>
       <TextInput style={styles.inputStyle} placeholder="First Name" />
       <TextInput style={styles.inputStyle} placeholder="Last Name" />
       <TextInput style={styles.inputStyle} placeholder="Email" autoCapitalize="none" />
@@ -10,7 +16,7 @@ export default function SignUpForm(props) {
       <View style={styles.submitButton}>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("login")}
+          onPress={() => navigation.navigate("Signin")}
         >
           <Text style={styles.caption}>Sign up</Text>
         </Pressable>
@@ -20,13 +26,6 @@ export default function SignUpForm(props) {
 }
 
 const styles = StyleSheet.create({
-  //   container: {
-  //     marginTop: 200,
-  //     flex: 1,
-  //     backgroundColor: "#FFFFFF",
-  //     alignItems: "center",
-  //     justifyContent: "center",
-  //   },
   inputStyle: {
     flexDirection: "row",
     alignItems: "flex-start",

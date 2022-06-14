@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../hooks/authContext";
 import {
   createStackNavigator,
@@ -18,8 +18,21 @@ import CandidateDetails from "../screen/tabs/candidateDetails";
 import ElectionResults from "../screen/tabs/electionResults";
 import AdminCreateElection from "../screen/admin/CreateElection";
 
-export default function Navigator() {
-  if (useContext(AuthContext).isLoggedIn) {
+export type RootStackParamList = {
+  Home: undefined;
+  Signin: undefined;
+  Signup: undefined;
+  Add: undefined;
+  Analytics: undefined;
+  Profile: undefined;
+  Details: {
+    id: string;
+  }
+}
+const Stack = createStackNavigator<RootStackParamList>();
+
+export default function Navigator(): React.ReactElement {
+  if (useContext(AuthContext).authedUser) {
     return <AppNavigator />;
   } else {
     return <AuthNavigator />;
@@ -27,28 +40,25 @@ export default function Navigator() {
 }
 
 function AuthNavigator() {
-  const stack = createStackNavigator();
   return (
-    <stack.Navigator
-      initialRouteName="home"
+    <Stack.Navigator
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
         gestureDirection: "horizontal",
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}
+      }
+      }
     >
-      <stack.Screen name="home" component={HomeScreen} />
-      <stack.Screen
-        name="login"
-        screenOptions={{
-          headerShown: false,
-        }}
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Signin"
         component={LoginScreen}
       />
-      <stack.Screen name="signup" component={SignUpScreen} />
-      {/* <stack.Screen name="details" component={CandidateDetails} /> */}
-    </stack.Navigator>
+      <Stack.Screen name="Signup" component={SignUpScreen} />
+      {/* <Stack.Screen name="details" component={CandidateDetails} /> */}
+    </Stack.Navigator>
   );
 }
 
@@ -60,7 +70,6 @@ function AppNavigator() {
       initialRouteName="home"
       screenOptions={{
         headerShown: false,
-        tabBarHideKeyboard: true,
         tabBarInactiveTintColor: "black",
         tabBarStyle: {
           backgroundColor: "#4361EE",
@@ -138,18 +147,18 @@ function AppNavigator() {
 }
 
 function otherNavigators() {
-  const stack = createStackNavigator();
   return (
-    <stack.Navigator
+    <Stack.Navigator
       initialRouteName="details"
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
         gestureDirection: "horizontal",
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}
+      }
+      }
     >
-      <stack.Screen name="details" component={CandidateDetails} />
-    </stack.Navigator>
+      <Stack.Screen name="details" component={CandidateDetails} />
+    </Stack.Navigator>
   );
 }
