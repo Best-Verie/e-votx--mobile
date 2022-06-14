@@ -39,6 +39,7 @@ export default function Navigator(): React.ReactElement {
   }
 }
 
+
 function AuthNavigator() {
   return (
     <Stack.Navigator

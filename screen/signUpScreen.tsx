@@ -1,14 +1,45 @@
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Button } from "react-native";
 import BackButton from "../components/BackButton";
-import { SafeAreaView } from "react-native-safe-area-context";
-import React from "react";
+import RNPickerSelect from "react-native-picker-select";
+import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigator/navigator";
+import { useFormik } from "formik";
+import SubmitButton from "../components/SubmitButton";
+import { BASE_URL } from "../utils/contants";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "Signup">
 
 export default function SignUpScreen({ navigation }: Props) {
+
+  const { values, setFieldValue, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      gender: null
+    },
+    onSubmit: async (values) => {
+
+
+
+      const response = await fetch(`${BASE_URL}/user`, {
+        method: "POST",
+        body: JSON.stringify(values)
+      })
+
+      if (response.ok) {
+        navigation.navigate("Signin")
+      }
+
+      // fix errors 
+      // const data = await response.json()
+      // if(data.)
+    }
+  })
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -26,17 +57,23 @@ export default function SignUpScreen({ navigation }: Props) {
 
       <View style={styles.loginForm}>
         <View>
-          <TextInput style={styles.inputStyle} placeholder="First Name" />
-          <TextInput style={styles.inputStyle} placeholder="Last Name" />
-          <TextInput style={styles.inputStyle} placeholder="Email" autoCapitalize="none" />
-          <TextInput style={styles.inputStyle} placeholder="Password" secureTextEntry={true} />
+          <TextInput style={styles.inputStyle} value={values.email} onChangeText={handleChange("email")} placeholder="First Name" />
+          <TextInput style={styles.inputStyle} value={values.lastName} onChangeText={handleChange("lastName")} placeholder="Last Name" />
+          <TextInput style={styles.inputStyle} value={values.firstName} onChangeText={handleChange("firstName")} placeholder="Email" autoCapitalize="none" />
+          <TextInput style={styles.inputStyle} value={values.password} onChangeText={handleChange("password")} placeholder="Password" secureTextEntry={true} />
+          <RNPickerSelect style={pickerSelectStyles} value={values.gender} placeholder={{ label: "Select gender", value: null }} useNativeAndroidPickerStyle={false}
+            onValueChange={(gender) => setFieldValue("gender", gender)} items={[
+              {
+                label: "Male",
+                value: "MALE"
+              },
+              {
+                label: "Female",
+                value: "FEMALE"
+              }
+            ]} />
           <View style={styles.submitButton}>
-            <Pressable
-              style={styles.button}
-              onPress={() => navigation.navigate("Signin")}
-            >
-              <Text style={styles.caption}>Sign up</Text>
-            </Pressable>
+            <SubmitButton title="Signup" onPress={() => handleSubmit()} />
           </View>
         </View>
       </View>
@@ -49,6 +86,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
     paddingTop: "20%"
+  },
+  selectStyle: {
+    marginTop: 10,
   },
   topContainer: {
     marginTop: 15,
@@ -68,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   midContainer: {
-    marginTop: 50,
+    marginTop: 20,
     flexDirection: "row",
     alignContent: "flex-start",
     justifyContent: "center",
@@ -81,7 +121,7 @@ const styles = StyleSheet.create({
     // marginBottom: 90,
   },
   loginForm: {
-    marginTop: 80,
+    marginTop: 30,
     alignItems: "center",
     justifyContent: "flex-end",
   },
@@ -113,4 +153,30 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontFamily: "urbanist-bold",
   },
+});
+
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "#EAECEE",
+    color: 'black',
+    marginTop: 30,
+    paddingRight: 30 // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "#EAECEE",
+    color: 'black',
+    marginTop: 30,
+    paddingRight: 30 // to ensure the text is never behind the icon
+  }
 });
