@@ -1,40 +1,46 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import SignUpForm from "../components/SignUpForm";
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput } from "react-native";
 import BackButton from "../components/BackButton";
 import { SafeAreaView } from "react-native-safe-area-context";
-export default function SignUpScreen() {
+import React from "react";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigator/navigator";
+
+
+type Props = NativeStackScreenProps<RootStackParamList, "Signup">
+
+export default function SignUpScreen({ navigation }: Props) {
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.topContainer}>
-          <View style={styles.backbtnView}>
-            <BackButton />
-          </View>
-          <View style={styles.top}>
-            <Text style={styles.topText}>Sign up</Text>
-          </View>
+    <View style={styles.container}>
+      <View style={styles.topContainer}>
+        <View style={styles.backbtnView}>
+          <BackButton onPress={() => navigation.goBack()} />
         </View>
-
-        <View style={styles.midContainer}>
-          <Text style={styles.midText}>Create your free E-votx account</Text>
+        <View style={styles.top}>
+          <Text style={styles.topText}>Sign up</Text>
         </View>
-
-        <View style={styles.loginForm}>
-          <SignUpForm />
-        </View>
-
-        {/* <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("signup");
-        }}
-      >
-        <View style={styles.bottomContent}>
-          <Text style={styles.bottomText}>Don't have an account?</Text>
-          <Text style={styles.bottomTextTwo}>sign up</Text>
-        </View>
-      </TouchableOpacity> */}
       </View>
-    </SafeAreaView>
+
+      <View style={styles.midContainer}>
+        <Text style={styles.midText}>Create your free E-votx account</Text>
+      </View>
+
+      <View style={styles.loginForm}>
+        <View>
+          <TextInput style={styles.inputStyle} placeholder="First Name" />
+          <TextInput style={styles.inputStyle} placeholder="Last Name" />
+          <TextInput style={styles.inputStyle} placeholder="Email" autoCapitalize="none" />
+          <TextInput style={styles.inputStyle} placeholder="Password" secureTextEntry={true} />
+          <View style={styles.submitButton}>
+            <Pressable
+              style={styles.button}
+              onPress={() => navigation.navigate("Signin")}
+            >
+              <Text style={styles.caption}>Sign up</Text>
+            </Pressable>
+          </View>
+        </View>
+      </View>
+    </View>
   );
 }
 
@@ -42,6 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+    paddingTop: "20%"
   },
   topContainer: {
     marginTop: 15,
@@ -78,23 +85,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-end",
   },
-
-  // bottomContent: {
-  //   marginTop: 10,
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   // justifyContent: "space-between",
-  //   marginBottom: 8,
-  // },
-  // bottomText: {
-  //   fontSize: 16,
-  //   textAlign: "center",
-  // },
-  // bottomTextTwo: {
-  //   fontSize: 16,
-  //   color: "#4361EE",
-  //   textAlign: "center",
-  // },
+  inputStyle: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    width: 350,
+    height: 50,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "#EAECEE",
+    marginTop: 30,
+    paddingLeft: 15,
+  },
+  submitButton: {
+    marginTop: 40,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
+    backgroundColor: "#4361EE",
+    width: 350,
+    padding: 15,
+    height: 50,
+  },
+  caption: {
+    color: "#FFFFFF",
+    fontFamily: "urbanist-bold",
+  },
 });

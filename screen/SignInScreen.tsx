@@ -1,8 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import SignInForm from "../components/SignInForm";
 import BackButton from "../components/BackButton";
-export default function LoginScreen(props) {
-  const { navigation } = props;
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigator/navigator";
+
+type Props = NativeStackScreenProps<RootStackParamList, "Signin">
+
+
+
+export default function SignInScreen({ navigation }: Props) {
   const navigateBack = () => {
     navigation.goBack();
   };
@@ -32,6 +38,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+    paddingTop: "20%"
   },
   topContainer: {
     marginTop: 15,

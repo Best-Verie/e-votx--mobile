@@ -1,7 +1,9 @@
 import { View, StyleSheet, Text, Image } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
-export default function BackButton(props) {
+export default function BackButton(props: {
+  onPress: () => void;
+}) {
   return (
     <TouchableWithoutFeedback onPress={props.onPress}>
       <Image source={require("../assets/arrow.png")} style={styles.icon} />

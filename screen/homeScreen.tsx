@@ -1,9 +1,13 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import SubmitButton from "../components/SubmitButton";
+import { RootStackParamList } from "../navigator/navigator";
 
-export default function HomeScreen(props) {
-  const { navigation } = props;
+type Props = NativeStackScreenProps<RootStackParamList, "Signup">
+
+
+export default function HomeScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.slogan}>E-votx</Text>
@@ -25,12 +29,12 @@ export default function HomeScreen(props) {
         <View style={styles.getStarted}>
           <SubmitButton
             title="Get started"
-            onPress={() => navigation.navigate("signup")}
+            onPress={() => navigation.navigate("Signup")}
           />
         </View>
       </Pressable>
 
-      <TouchableWithoutFeedback onPress={() => navigation.navigate("login")}>
+      <TouchableWithoutFeedback onPress={() => navigation.navigate("Signin")}>
         <View style={styles.bottomContent}>
           <Text style={styles.bottomText}>Login to E-votx</Text>
         </View>
@@ -45,6 +49,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#FFFFFF",
+    paddingTop: "20%",
   },
   slogan: {
     fontSize: 20,

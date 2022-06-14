@@ -9,9 +9,9 @@ import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import LoginScreen from "../screen/loginScreen";
-import HomeScreen from "../screen/homeScreen";
-import SignUpScreen from "../screen/signUpScreen";
+import LoginScreen from "../screen/SignInScreen";
+import HomeScreen from "../screen/HomeScreen";
+import SignUpScreen from "../screen/SignUpScreen";
 import HomeTabScreen from "../screen/tabs/homeTabScreen";
 import Election from "../screen/tabs/electionScreen";
 import CandidateDetails from "../screen/tabs/candidateDetails";
@@ -149,7 +149,7 @@ function AppNavigator() {
 function otherNavigators() {
   return (
     <Stack.Navigator
-      initialRouteName="details"
+      initialRouteName="Details"
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
@@ -158,7 +158,7 @@ function otherNavigators() {
       }
       }
     >
-      <Stack.Screen name="details" component={CandidateDetails} />
+      <Stack.Screen name="Details" component={CandidateDetails} />
     </Stack.Navigator>
   );
 }
