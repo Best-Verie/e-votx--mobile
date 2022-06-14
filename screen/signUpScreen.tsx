@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Button, Alert } from "react-native";
 import BackButton from "../components/BackButton";
 import RNPickerSelect from "react-native-picker-select";
 import React, { useState } from "react";
@@ -23,20 +23,34 @@ export default function SignUpScreen({ navigation }: Props) {
     },
     onSubmit: async (values) => {
 
-
+      console.log({ values })
 
       const response = await fetch(`${BASE_URL}/user`, {
         method: "POST",
-        body: JSON.stringify(values)
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          role: "STANDARD",
+          "imageURL": null
+        })
       })
+
+      console.log({ values })
 
       if (response.ok) {
         navigation.navigate("Signin")
       }
 
       // fix errors 
-      // const data = await response.json()
-      // if(data.)
+      const data = await response.json()
+      console.log(data.message)
+
+      if (data.message) {
+        Alert.alert("error", data.message)
+      }
+
     }
   })
 
@@ -57,9 +71,9 @@ export default function SignUpScreen({ navigation }: Props) {
 
       <View style={styles.loginForm}>
         <View>
-          <TextInput style={styles.inputStyle} value={values.email} onChangeText={handleChange("email")} placeholder="First Name" />
+          <TextInput style={styles.inputStyle} value={values.firstName} onChangeText={handleChange("firstName")} placeholder="First Name" />
           <TextInput style={styles.inputStyle} value={values.lastName} onChangeText={handleChange("lastName")} placeholder="Last Name" />
-          <TextInput style={styles.inputStyle} value={values.firstName} onChangeText={handleChange("firstName")} placeholder="Email" autoCapitalize="none" />
+          <TextInput style={styles.inputStyle} value={values.email} onChangeText={handleChange("email")} placeholder="Email" autoCapitalize="none" />
           <TextInput style={styles.inputStyle} value={values.password} onChangeText={handleChange("password")} placeholder="Password" secureTextEntry={true} />
           <RNPickerSelect style={pickerSelectStyles} value={values.gender} placeholder={{ label: "Select gender", value: null }} useNativeAndroidPickerStyle={false}
             onValueChange={(gender) => setFieldValue("gender", gender)} items={[

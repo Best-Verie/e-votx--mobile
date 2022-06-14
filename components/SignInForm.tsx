@@ -50,7 +50,6 @@ export default function SignInForm() {
         Alert.alert("Success", "You have successfully signed in");
         await SecureStore.setItemAsync("token", data.access_token);
         const token = await SecureStore.getItemAsync("access_token");
-        console.log("token:", token);
         setIsLoggedIn(true);
       }
     },
