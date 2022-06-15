@@ -17,6 +17,7 @@ export default function HomeTabScreen(props: Props) {
         <TextInput
           style={styles.inputStyle}
           placeholder="Search for elections"
+          autoCapitalize="none"
         />
       </View>
       <Text style={styles.currentText}>Current Elections</Text>
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   currentText: {
     marginTop: 30,
     fontSize: 18,
-    marginLeft: 20,
+    marginLeft: 25,
   },
   slider: {
     marginTop: 40,

@@ -7,9 +7,13 @@ type Props = NativeStackScreenProps<RootStackParamList, "Home">
 
 
 export default function Election(props: Props) {
+
+
   const navigateBack = () => {
     props.navigation.goBack();
   };
+
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>

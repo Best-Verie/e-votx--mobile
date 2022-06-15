@@ -6,9 +6,11 @@ import { RootStackParamList } from "../../navigator/navigator";
 type Props = NativeStackScreenProps<RootStackParamList, "Signup">
 
 export default function CandidateDetails({ navigation }: Props) {
+
   const navigateBack = () => {
     navigation.goBack();
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
