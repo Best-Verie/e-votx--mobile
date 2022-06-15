@@ -13,8 +13,8 @@ export default function BackButton(props: {
 
 const styles = StyleSheet.create({
   icon: {
-    width: 20,
+    width: 30,
     height: 20,
-    marginLeft: 2,
+    // marginLeft: 10,
   },
 });

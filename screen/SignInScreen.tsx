@@ -21,6 +21,7 @@ export default function SignInScreen({ navigation }: Props) {
 
   const setIsLoggedIn = React.useContext(AuthContext).setIsLoggedIn;
 
+
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       email: "",
@@ -49,17 +50,13 @@ export default function SignInScreen({ navigation }: Props) {
 
       const data = await response.json();
 
-      console.log({ data })
 
       if (data.access_token) {
-        // console.log("data.access_token:", data.access_token);
         // Alert.alert("Success", "You have successfully signed in");
         await SecureStore.setItemAsync("token", data.access_token);
         // const token = await SecureStore.getItemAsync("access_token");
         setIsLoggedIn(true);
-        navigation.push("Details", {
-          id: "1",
-        })
+        navigation.push("Home")
       }
     },
   });

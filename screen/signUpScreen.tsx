@@ -23,7 +23,6 @@ export default function SignUpScreen({ navigation }: Props) {
     },
     onSubmit: async (values) => {
 
-      console.log({ values })
 
       const response = await fetch(`${BASE_URL}/user`, {
         method: "POST",
@@ -37,7 +36,6 @@ export default function SignUpScreen({ navigation }: Props) {
         })
       })
 
-      console.log({ values })
 
       if (response.ok) {
         navigation.navigate("Signin")
@@ -45,7 +43,6 @@ export default function SignUpScreen({ navigation }: Props) {
 
       // fix errors 
       const data = await response.json()
-      console.log(data.message)
 
       if (data.message) {
         Alert.alert("error", data.message)

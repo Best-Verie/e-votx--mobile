@@ -12,10 +12,10 @@ import { Ionicons } from "@expo/vector-icons";
 import LoginScreen from "../screen/SignInScreen";
 import HomeScreen from "../screen/HomeScreen";
 import SignUpScreen from "../screen/SignUpScreen";
-import HomeTabScreen from "../screen/tabs/homeTabScreen";
-import Election from "../screen/tabs/electionScreen";
-import CandidateDetails from "../screen/tabs/candidateDetails";
-import ElectionResults from "../screen/tabs/electionResults";
+import HomeTabScreen from "../screen/tabs/HomeTabScreen";
+import Election from "../screen/tabs/ElectionScreen";
+import CandidateDetails from "../screen/tabs/CandidateDetails";
+import ElectionResults from "../screen/tabs/ElectionResults";
 import AdminCreateElection from "../screen/admin/CreateElection";
 
 export type RootStackParamList = {
@@ -32,7 +32,9 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function Navigator(): React.ReactElement {
-  if (useContext(AuthContext).authedUser) {
+
+
+  if (useContext(AuthContext).isLoggedIn) {
     return <AppNavigator />;
   } else {
     return <AuthNavigator />;

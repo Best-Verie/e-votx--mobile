@@ -1,8 +1,12 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
-
 import BackButton from "../../components/BackButton";
-import CandidateDetails from "./candidateDetails";
-export default function Election(props) {
+import { RootStackParamList } from "../../navigator/navigator";
+
+type Props = NativeStackScreenProps<RootStackParamList, "Home">
+
+
+export default function Election(props: Props) {
   const navigateBack = () => {
     props.navigation.goBack();
   };
@@ -16,7 +20,7 @@ export default function Election(props) {
           <Text style={styles.topText}>Presidential elections</Text>
         </View>
       </View>
-      <View style={styles.midContainer}>
+      <View>
         <View
           style={{
             width: "100%",
@@ -31,7 +35,7 @@ export default function Election(props) {
           </Text>
         </View>
       </View>
-      <View style={styles.bottomContainer}>
+      <View>
         <Text style={styles.cTitle}>Candidates(3)</Text>
         <View style={styles.candidates}>
           <View style={styles.candidatesList}>
@@ -47,7 +51,7 @@ export default function Election(props) {
             {/* </View> */}
           </View>
           <View style={styles.vote}>
-            <Pressable onPress={() => props.navigation.navigate("analytics")}>
+            <Pressable onPress={() => props.navigation.navigate("Analytics")}>
               <View style={styles.voteBtn}>
                 <Text style={styles.voteText}>Vote</Text>
               </View>

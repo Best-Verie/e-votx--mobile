@@ -8,6 +8,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "Signup">
 
 
 export default function HomeScreen({ navigation }: Props) {
+
+
+
   return (
     <View style={styles.container}>
       <Text style={styles.slogan}>E-votx</Text>

@@ -1,7 +1,16 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useEffect } from "react";
 import { View, StyleSheet, Text, TextInput, Pressable } from "react-native";
-import CardSilder from "react-native-cards-slider";
+// import CardSilder from "react-native-cards-slider";
+import { RootStackParamList } from "../../navigator/navigator";
 
-export default function HomeTabScreen(props) {
+type Props = NativeStackScreenProps<RootStackParamList, "Home">
+
+
+
+export default function HomeTabScreen(props: Props) {
+
+
   return (
     <View style={styles.container}>
       <View style={styles.searchView}>
@@ -11,14 +20,13 @@ export default function HomeTabScreen(props) {
         />
       </View>
       <Text style={styles.currentText}>Current Elections</Text>
-      <CardSilder style={styles.slider}>
-        <Pressable onPress={() => props.navigation.navigate("add")}>
+      {/* <CardSilder style={styles.slider}>
+        <Pressable onPress={() => props.navigation.navigate("Add")}>
           <View
             style={{
               height: 170,
               justifyContent: "center",
               alignItems: "center",
-              fontFamily: "urbanist-semi-bold",
               backgroundColor: "skyblue",
             }}
           >
@@ -41,7 +49,6 @@ export default function HomeTabScreen(props) {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "lightsalmon",
-            fontFamily: "urbanist-semi-bold",
           }}
         >
           <Text
@@ -79,10 +86,10 @@ export default function HomeTabScreen(props) {
             Abaministri
           </Text>
         </View>
-      </CardSilder>
+      </CardSilder> */}
 
       <View style={styles.latest}>
-        <Text style={styles.latestText}>Latest elections</Text>
+        {/* <Text>Latest elections</Text> */}
       </View>
     </View>
   );
@@ -90,17 +97,15 @@ export default function HomeTabScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    marginTop: '20%'
   },
   currentText: {
     marginTop: 30,
     fontSize: 18,
-    fontFamily: "urbanist-semi-bold",
     marginLeft: 20,
   },
   slider: {
     marginTop: 40,
-    fontFamily: "urbanist-semi-bold",
     height: "40%",
   },
   latest: {
@@ -117,7 +122,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: "#E5E5E5",
     borderWidth: 2,
-    padding: 5,
-    fontFamily: "urbanist-semi-bold",
+    // paddingTop: 20,
+    // textAlign: "center",
+    paddingHorizontal: 14,
+    paddingVertical: 12,
   },
 });
