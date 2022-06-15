@@ -1,10 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import SignInForm from "../components/SignInForm";
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Pressable, TextInput } from "react-native";
 import BackButton from "../components/BackButton";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigator/navigator";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { getToken } from "../utils/token";
+import { useFormik } from "formik";
+import SubmitButton from "../components/SubmitButton";
+import { AuthContext } from "../hooks/authContext";
+import * as SecureStore from "expo-secure-store";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "Signin">
 
@@ -13,6 +17,52 @@ export default function SignInScreen({ navigation }: Props) {
   const navigateBack = () => {
     navigation.goBack();
   };
+
+
+  const setIsLoggedIn = React.useContext(AuthContext).setIsLoggedIn;
+
+  const { handleSubmit, handleChange, values } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: async (values) => {
+      if (!values.email && !values.password) {
+        Alert.alert("Please enter your email and password");
+        return;
+      }
+
+      const response = await fetch(
+        "https://voting-backend-production.up.railway.app/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(values),
+        }
+      );
+
+      if (!response.ok) {
+        Alert.alert("Error", "Invalid credentials");
+      }
+
+      const data = await response.json();
+
+      console.log({ data })
+
+      if (data.access_token) {
+        // console.log("data.access_token:", data.access_token);
+        // Alert.alert("Success", "You have successfully signed in");
+        await SecureStore.setItemAsync("token", data.access_token);
+        // const token = await SecureStore.getItemAsync("access_token");
+        setIsLoggedIn(true);
+        navigation.push("Details", {
+          id: "1",
+        })
+      }
+    },
+  });
 
   // useEffect(() => {
   //   async function checkAuth() {
@@ -41,7 +91,28 @@ export default function SignInScreen({ navigation }: Props) {
       </View>
 
       <View style={styles.loginForm}>
-        <SignInForm />
+        {/* <SignInForm /> */}
+        <View>
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Email"
+            value={values.email}
+            autoCapitalize="none"
+            onChangeText={handleChange("email")}
+          />
+          <TextInput
+            style={styles.inputStyle}
+            placeholder="Password"
+            secureTextEntry={true}
+            value={values.password}
+            onChangeText={handleChange("password")}
+          />
+          <Pressable>
+            <View style={styles.submitButton}>
+              <SubmitButton title="Login" onPress={() => handleSubmit()} />
+            </View>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -87,6 +158,35 @@ const styles = StyleSheet.create({
     marginTop: 80,
     alignItems: "center",
     justifyContent: "flex-end",
+  },
+
+  inputStyle: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    width: 350,
+    height: 50,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "#EAECEE",
+    marginTop: 30,
+    paddingLeft: 15,
+  },
+  submitButton: {
+    marginTop: 40,
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 20,
+    backgroundColor: "#4361EE",
+    width: 350,
+    padding: 15,
+    height: 50,
+  },
+  caption: {
+    color: "#FFFFFF",
+    fontFamily: "urbanist-bold",
   },
 
   // bottomContent: {

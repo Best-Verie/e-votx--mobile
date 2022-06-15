@@ -63,12 +63,12 @@ function AuthNavigator() {
   );
 }
 
-const Tabs = createBottomTabNavigator();
+const Tabs = createBottomTabNavigator<RootStackParamList>();
 
 function AppNavigator() {
   return (
     <Tabs.Navigator
-      initialRouteName="home"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarInactiveTintColor: "black",
@@ -102,7 +102,7 @@ function AppNavigator() {
       }}
     >
       <Tabs.Screen
-        name="home"
+        name="Home"
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="home" size={26} color={color} />
@@ -112,7 +112,7 @@ function AppNavigator() {
       />
 
       <Tabs.Screen
-        name="add"
+        name="Add"
         options={{
           tabBarIcon: ({ color }) => (
             <Ionicons name="add-circle-outline" size={26} color={color} />
@@ -122,7 +122,7 @@ function AppNavigator() {
       />
 
       <Tabs.Screen
-        name="analytics"
+        name="Analytics"
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
@@ -135,7 +135,7 @@ function AppNavigator() {
         component={ElectionResults}
       />
       <Tabs.Screen
-        name="profile"
+        name="Profile"
         options={{
           tabBarIcon: ({ color }) => (
             <AntDesign name="adduser" size={24} color={color} />
